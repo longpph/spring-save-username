@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.codegym'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-parameters"
+}
+
+dependencies {
+    // Jakarta EE 10 (Servlet 6.0)
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // Spring Web MVC 6.2.6
+    implementation 'org.springframework:spring-webmvc:6.2.6'
+
+    // Thymeleaf Spring6 3.1.1.RELEASE
+    implementation 'org.thymeleaf:thymeleaf-spring6:3.1.1.RELEASE'
+
+    // Thymeleaf Layout Dialect 3.1.0
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+}
+
+war {
+    archiveFileName = 'spring-save-username.war'
+}
